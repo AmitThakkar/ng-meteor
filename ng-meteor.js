@@ -1,23 +1,17 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+    (function (ng) {
+        var ngMeteorApp = ng.module('ng-meteor', ['angular-meteor']);
+        ngMeteorApp.controller('NgMeteorController', [function () {
+            var ngMeteor = this;
+            ngMeteor.tasks = [
+                {text: 'This is task 1'},
+                {text: 'This is task 2'},
+                {text: 'This is task 3'}
+            ];
+        }]);
+    })(angular);
 }
-
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+    Meteor.startup(function () {
+    });
 }
